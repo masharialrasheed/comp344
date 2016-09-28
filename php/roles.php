@@ -44,8 +44,8 @@ else if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 /* Returns associative array {sh_username: [ag_names]} */
 function getUserAccessGroups($pdo) {
     $sql = "SELECT sh_username, ag_name FROM shopper sh
-            INNER JOIN accessusergroup aug ON shopper_id = aug_shopper_id
-            INNER JOIN accessgroup ag ON ag_id = aug_ag_id";
+            LEFT JOIN accessusergroup aug ON shopper_id = aug_shopper_id
+            LEFT JOIN accessgroup ag ON ag_id = aug_ag_id";
     $stmt = $pdo->prepare($sql);
     $stmt->execute();
 

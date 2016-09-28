@@ -48,9 +48,15 @@ $(document).ready(function() {
                 /* Update table */
                 var tableBody = '';
                 $.each(response.userroles, function(username, roles) {
+
                     tableBody += '<tr class="row-roles">'+
                                   '<td class="username">'+username+'</td>'+
-                                  '<td>'+roles+'</td></tr>\n';
+                                  '<td>';
+                    $.each(roles, function(i, role) {
+                        if (role && (i !== roles.length-1)) tableBody += role+', ';
+                        else if (role) tableBody += role;
+                    });
+                    tableBody += '</td></tr>\n';
                 });
                 $('#u-table-body').html(tableBody);
 
