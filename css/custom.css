@@ -1,0 +1,18 @@
+body {
+    padding-top: 80px;
+}
+
+
+/* Row colour on mouse hover */
+.table-hover tbody tr:hover td {
+    background-color: aliceblue;
+}
+tbody {
+  font-size: 14px;
+}
+
+
+/* Keep footer near bottom when page not full */
+.content {
+  min-height: 90%;
+}
