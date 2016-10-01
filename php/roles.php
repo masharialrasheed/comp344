@@ -7,8 +7,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $response['success'] = true;
 
     if (isset($_POST['roles'])) {
-        $accessgroups = array_keys(getAccessGroups($pdo));
-        foreach ($accessgroups as $ag_id) {
+        $AccessGroups = array_keys(getAccessGroups($pdo));
+        foreach ($AccessGroups as $ag_id) {
             if (in_array($ag_id, $_POST['roles'])) {
                 addAccessGroup($pdo, $_POST['username'], $ag_id);
             } else {
@@ -43,9 +43,9 @@ else if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 <?php
 /* Returns associative array {sh_username: [ag_names]} */
 function getUserAccessGroups($pdo) {
-    $sql = "SELECT sh_username, ag_name FROM shopper sh
-            LEFT JOIN accessusergroup aug ON shopper_id = aug_shopper_id
-            LEFT JOIN accessgroup ag ON ag_id = aug_ag_id";
+    $sql = "SELECT sh_username, ag_name FROM Shopper
+            LEFT JOIN AccessUserGroup ON sh_id = aug_sh_id
+            LEFT JOIN AccessGroup ON ag_id = aug_ag_id";
     $stmt = $pdo->prepare($sql);
     $stmt->execute();
 
@@ -63,9 +63,9 @@ function getUserAccessGroups($pdo) {
 
 /* Returns associative array {ag_id: ag_name} */
 function getUserAccessGroupsFor($pdo, $username) {
-    $sql = "SELECT sh_username, ag_id, ag_name FROM shopper sh
-            INNER JOIN accessusergroup aug ON shopper_id = aug_shopper_id
-            INNER JOIN accessgroup ag ON ag_id = aug_ag_id
+    $sql = "SELECT sh_username, ag_id, ag_name FROM Shopper
+            INNER JOIN AccessUserGroup ON sh_id = aug_sh_id
+            INNER JOIN AccessGroup ON ag_id = aug_ag_id
             WHERE sh_username = ?";
     $stmt = $pdo->prepare($sql);
     $stmt->execute([$username]);
@@ -80,7 +80,7 @@ function getUserAccessGroupsFor($pdo, $username) {
 
 /* Returns associative array {ag_id: ag_name} */
 function getAccessGroups($pdo) {
-    $sql = "SELECT ag_id, ag_name FROM accessgroup ORDER BY ag_id";
+    $sql = "SELECT ag_id, ag_name FROM AccessGroup ORDER BY ag_id";
     $stmt = $pdo->prepare($sql);
     $stmt->execute();
 
@@ -93,9 +93,9 @@ function getAccessGroups($pdo) {
 
 
 function addAccessGroup($pdo, $username, $ag_id) {
-    $sql = "SELECT sh_username FROM shopper sh
-            INNER JOIN accessusergroup aug ON shopper_id = aug_shopper_id
-            INNER JOIN accessgroup ag ON ag_id = aug_ag_id
+    $sql = "SELECT sh_username FROM Shopper
+            INNER JOIN AccessUserGroup ON sh_id = aug_sh_id
+            INNER JOIN AccessGroup ON ag_id = aug_ag_id
             WHERE sh_username = ?
             AND ag_id = ?";
     $stmt = $pdo->prepare($sql);
@@ -104,16 +104,16 @@ function addAccessGroup($pdo, $username, $ag_id) {
 
     if (!$exists) {
         $user_id = getShopperIdFromName($pdo, $username);
-        $sql = "INSERT INTO accessusergroup VALUES (NULL, ?, ?)";
+        $sql = "INSERT INTO AccessUserGroup VALUES (NULL, ?, ?)";
         $stmt = $pdo->prepare($sql)->execute([$user_id, $ag_id]);
     }
 }
 
 
 function removeAccessGroup($pdo, $username, $ag_id) {
-    $sql = "SELECT sh_username FROM shopper sh
-            INNER JOIN accessusergroup aug ON shopper_id = aug_shopper_id
-            INNER JOIN accessgroup ag ON ag_id = aug_ag_id
+    $sql = "SELECT sh_username FROM Shopper
+            INNER JOIN AccessUserGroup ON sh_id = aug_sh_id
+            INNER JOIN AccessGroup ON ag_id = aug_ag_id
             WHERE sh_username = ?
             AND ag_id = ?";
     $stmt = $pdo->prepare($sql);
@@ -122,17 +122,17 @@ function removeAccessGroup($pdo, $username, $ag_id) {
 
     if ($exists) {
         $user_id = getShopperIdFromName($pdo, $username);
-        $sql = "DELETE FROM accessusergroup WHERE aug_shopper_id = ? AND aug_ag_id = ?";
+        $sql = "DELETE FROM AccessUserGroup WHERE aug_sh_id = ? AND aug_ag_id = ?";
         $stmt = $pdo->prepare($sql)->execute([$user_id, $ag_id]);
     }
 }
 
 
 function getShopperIdFromName($pdo, $username) {
-    $sql = "SELECT shopper_id FROM shopper WHERE sh_username = ?";
+    $sql = "SELECT sh_id FROM Shopper WHERE sh_username = ?";
     $stmt = $pdo->prepare($sql);
     $stmt->execute([$username]);
     $row = $stmt->fetch();
-    return $row['shopper_id'];
+    return $row['sh_id'];
 }
 ?>
