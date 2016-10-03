@@ -18,8 +18,11 @@ $(function() {
   /* Initialise page */
   function init() {
     $modalSave.on('click', submitModal);
-    $eModal.on('hidden.bs.modal', function () { $modalForm.trigger('reset'); });
-
+    $eModal.on('hidden.bs.modal', function () {
+      $modalForm.trigger('reset');
+      $modalSave.removeClass('btn-success btn-danger').addClass('btn-primary').text('Save');
+    });
+    
     fillTableWithUserRoles();
   }
 
@@ -51,7 +54,6 @@ $(function() {
         fillTableWithUserRoles();
         setTimeout(function() {
           $eModal.modal('hide');
-          $modalSave.removeClass('btn-success btn-danger').addClass('btn-primary').text('Save');
         }, 500);
       }
     });

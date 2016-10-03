@@ -70,8 +70,9 @@ function respondToGET() {
 */
 function getUsers($pdo) {
   $sql = "SELECT sh_id, sh_username, ag_id, ag_name FROM Shopper
-          LEFT JOIN AccessUserGroup ON sh_id = aug_sh_id
-          LEFT JOIN AccessGroup ON ag_id = aug_ag_id";
+          INNER JOIN AccessUserGroup ON sh_id = aug_sh_id
+          INNER JOIN AccessGroup ON ag_id = aug_ag_id
+          ORDER BY sh_id";
   $stmt = $pdo->prepare($sql);
   $stmt->execute();
 
@@ -157,7 +158,7 @@ function removeAccessGroup($pdo, $username, $ag_id) {
 
 
 function getShopperIdFromName($pdo, $username) {
-  $sql = "SELECT sh_id FROM Shopper WHERE sh_username = ?";
+  $sql = "SELECT DISTINCT sh_id FROM Shopper WHERE sh_username = ?";
   $stmt = $pdo->prepare($sql);
   $stmt->execute([$username]);
   $row = $stmt->fetch();
