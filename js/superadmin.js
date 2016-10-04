@@ -17,7 +17,7 @@ $(function() {
         '<tr class="row-roles"><td>{{id}}</td><td class="username">{{username}}</td><td>{{roles}}</td></tr>'+
       '{{/.}}'+
       '{{^.}}'+
-        '<tr class="row-roles"><td>No records found</td><td></td></tr>'+
+        '<tr class="row-roles"><td></td><td>No records found</td><td></td></tr>'+
       '{{/.}}'+
       '</tbody>';
 

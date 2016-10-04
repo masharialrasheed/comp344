@@ -4,20 +4,18 @@ include_once 'ChromePhp.php';
 
 if (isset($_SERVER['REQUEST_METHOD'])) {
   $method = $_SERVER['REQUEST_METHOD'];
-  $response = array();
 
   if ($method == 'GET') {
-    sendResponse(respondToGET());
+    respondToGET();
   } elseif ($method == 'POST') {
-    sendResponse(respondToPOST());
+    respondToPOST();
   }
-
 }
 ?>
 
 
 <?php
-/* Send a JSON response and exit script */
+/* Sends a JSON response and exits the script */
 function sendResponse($response) {
   header('Content-Type: application/json');
   echo json_encode($response);
@@ -44,7 +42,7 @@ function respondToPOST() {
     }
   }
 
-  return json_encode('success');
+  sendResponse('success');
 }
 
 
@@ -54,7 +52,8 @@ function respondToGET() {
   $response = array();
   $response['roles'] = getAccessGroups($pdo);
   $response['users'] = getUsers($pdo);
-  return $response;
+
+  sendResponse($response);
 }
 ?>
 
