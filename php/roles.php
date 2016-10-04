@@ -59,13 +59,13 @@ function respondToGET() {
 ?>
 
 <?php
-/* Returns associative array of Users (id, username, roles)
+/* Returns array of Users (id, username, roles)
 {
-  "John": {
+  [{
     "id": 1,
     "username": "John",
     "roles": "Super Administrator, Customer Service Manager"
-  }
+  }]
 }
 */
 function getUsers($pdo) {
@@ -93,7 +93,7 @@ function getUsers($pdo) {
       $users[$u]['role_ids'][] = $row['ag_id'];
     }
   }
-  return $users;
+  return array_values($users);
 }
 
 

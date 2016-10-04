@@ -1,120 +1,138 @@
 $(function() {
-  /* Cache DOM elements */
-  var $eModal = $('#emodal');
-  var $modalTitle = $eModal.find('.modal-title');
-  var $modalForm = $eModal.find('form');
-  var $modalSave = $eModal.find('.modal-footer button:nth-child(2)');
 
-  var $table = $('#sa-table');
-  var $tableHead = $table.find('thead tr');
-  var $tableBody = $table.find('tbody');
+  var userRolesModule = (function() {
+    var myData = { 'users':[], 'roles':[] };
+    var currentUser = '';
 
-  var gusers;
-  var groles;
+    /* Cache DOM elements */
+    var $table  = $('#sa-table');
+    var $eModal = $('#emodal');
+    var $modalTitle = $eModal.find('.modal-title');
+    var $modalForm  = $eModal.find('.modal-body form');
+    var $modalSave  = $eModal.find('.modal-footer button:nth-child(2)');
 
-  init();
+    var tableTpl = '<thead><tr><th>id</th><th>Username</th><th>Roles</th></tr></thead>'+
+      '<tbody>'+
+      '{{#.}}'+
+        '<tr class="row-roles"><td>{{id}}</td><td class="username">{{username}}</td><td>{{roles}}</td></tr>'+
+      '{{/.}}'+
+      '{{^.}}'+
+        '<tr class="row-roles"><td>No records found</td><td></td></tr>'+
+      '{{/.}}'+
+      '</tbody>';
 
+    var checkboxTpl =
+      '{{#.}}'+
+        '<div class="checkbox"><label><input type="checkbox" name="{{name}}" value="{{id}}">{{name}}</label></div>'+
+      '{{/.}}';
 
-  /* Initialise page */
-  function init() {
-    $modalSave.on('click', submitModal);
-    $eModal.on('hidden.bs.modal', function () {
-      $modalForm.trigger('reset');
-      $modalSave.removeClass('btn-success btn-danger').addClass('btn-primary').text('Save');
-    });
-    
-    fillTableWithUserRoles();
-  }
+    /* Initialise module */
+    function init() {
+      // Open modal form on click of user row
+      $table.on('click', '.row-roles', function() {
+        currentUser = $(this).find('.username').text();
+        $modalTitle.text('Edit Roles - '+currentUser);
+        // Prefill checkboxes
+        var user = $.grep(myData.users, function(u) { return u.username == currentUser })[0];
+        $modalForm.find('input').each(function() {
+          var id = parseInt($(this).val());
+          if ($.inArray(id, user.role_ids) !== -1) { $(this).prop('checked', true); }
+        });
+        // Finally show modal
+        $eModal.modal('show');
+      });
 
+      $modalSave.on('click', _submitModal);
 
-  /* On save: send form data, style button, fade out, then reset style */
-  function submitModal() {
-    var username = $eModal.prop('data-username');
-    var roles = [];
-    $modalForm.find('input').each(function() {
-      var $box = $(this);
-      if ($box.is(':checked')) {
-        roles.push($box.val());
+      // Reset modal style when hidden
+      $eModal.on('hidden.bs.modal', function () {
+        styleBtn($modalSave, 'primary', 'Save');
+        $modalForm.trigger('reset');
+      });
+
+      _update();
+    }
+
+    /* Render module */
+    function _render() {
+      // Render table
+      var tpl = Mustache.render(tableTpl, myData.users);
+      $table.html(tpl);
+
+      // Render modal
+      var tpl = Mustache.render(checkboxTpl, myData.roles);
+      $modalForm.html(tpl);
+    }
+
+    /* Update user & roles data */
+    function _update() {
+      $.get({
+        url: 'php/roles.php',
+        dataType: 'json'
+      })
+        .done(function(d) {
+          myData.users = d.users;
+          myData.roles = d.roles;
+        })
+        .fail(logAjaxError)
+        .always(function() {
+          _render();
+        });
+    }
+
+    /* On submit: send form data, style button, fade out, then hide */
+    function _submitModal() {
+      var roles = [];
+      $modalForm.find('input').each(function() {
+        var $check = $(this);
+        if ($check.is(':checked')) { roles.push($check.val()); }
+      });
+
+      $.ajax({
+        method: 'POST',
+        url: 'php/roles.php',
+        data: {'username': currentUser, 'roles': roles},
+        dataType: 'json'
+      })
+        .done(function() {
+          styleBtn($modalSave, 'success', 'Saved!');
+        })
+        .fail(function(jq, status, error) {
+          styleBtn($modalSave, 'danger', 'Error!');
+          logAjaxError(jq, status, error);
+        })
+        .always(function() {
+          _update();
+          setTimeout(function() { $eModal.modal('hide'); }, 500);
+      });
+    }
+
+    function styleBtn(btn, style, text) {
+      if (style === 'success') {
+        btn.removeClass('btn-primary btn-danger')
+           .addClass('btn-success');
+      } else if (style === 'danger') {
+        btn.removeClass('btn-primary btn-success')
+           .addClass('btn-danger');
+      } else if (style === 'primary') {
+        btn.removeClass('btn-success btn-danger')
+           .addClass('btn-primary');
       }
-    });
+      btn.text(text);
+    }
 
-    $.ajax({
-      method: 'POST',
-      url: 'php/roles.php',
-      data: {'username': username, 'roles': roles},
-      dataType: 'json',
-      success: function(data) {
-        $modalSave.removeClass('btn-primary').addClass('btn-success').text('Saved!');
-      },
-      error: function(jq, status, error) {
-        $modalSave.removeClass('btn-primary').addClass('btn-danger').text('Error!');
-        logAjaxError(jq, status, error);
-      },
-      complete: function() {
-        fillTableWithUserRoles();
-        setTimeout(function() {
-          $eModal.modal('hide');
-        }, 500);
-      }
-    });
-  }
+    /* Log AJAX errors */
+    function logAjaxError(jq, status, error)  {
+        console.log("An AJAX Error Occured!");
+        console.log("  Text status: " + status);
+        console.log("  Error thrown: " + error);
+        console.log("  jqXHR: " + JSON.stringify(jq));
+    }
 
+    return {
+      init: init
+    };
+  })();
 
-  /* Updates User Roles table & modal */
-  function fillTableWithUserRoles() {
-    $tableHead.html('<th>Username</th><th>Roles</th>');
-
-    $.get({
-      url: 'php/roles.php',
-      dataType: 'json',
-      success: function(data) {
-        /* Update table */
-        var userTemplate = '<tr class="row-roles"><td class="username">{{username}}</td><td>{{roles}}</td></tr>';
-        var tableBodyHtml = '';
-        $.each(data.users, function(k, v) {
-          tableBodyHtml += Mustache.render(userTemplate, this);
-        });
-        $tableBody.html(tableBodyHtml);
-
-        /* Update modal */
-        var checkboxTemplate = '<div class="checkbox"><label><input type="checkbox" name="{{name}}" value="{{id}}">{{name}}</label></div>';
-        var checkboxHtml = '';
-        $.each(data.roles, function(k, v) {
-          checkboxHtml += Mustache.render(checkboxTemplate, this);
-        });
-        $modalForm.html(checkboxHtml);
-
-        /* Open modal form on click of user row */
-        $('.row-roles').on('click', function() {
-          var username = $(this).find('.username').text();
-          $eModal.prop('data-username', username);
-          $modalTitle.text('Edit Roles - '+username);
-          // Prefill checkboxes
-          $modalForm.find('input').each(function() {
-            var role_id = $(this).val();
-            if (role_id) { role_id = parseInt(role_id)};
-            var user = data.users[username];
-            if ($.inArray(role_id, user.role_ids) !== -1) {
-              $(this).prop('checked', true);
-            }
-          });
-          $eModal.modal('show');
-        });
-      },
-      error: logAjaxError
-    });
-  }
-
-
-  /* Log AJAX errors */
-  function logAjaxError(jq, status, error)  {
-      console.log("An AJAX Error Occured!");
-      console.log("  Text status: " + status);
-      console.log("  Error thrown: " + error);
-      console.log("  jqXHR: " + JSON.stringify(jq));
-  }
-
-  jQuery.isSubstring = function(haystack, needle) {
-      return haystack.indexOf(needle) !== -1;
-  };
+  userRolesModule.init();
 });
