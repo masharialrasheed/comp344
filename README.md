@@ -28,7 +28,6 @@
 
 <hr>
 ### Known Bugs
-- When trying to remove all roles at once, nothing happens
 
 
 <hr>

@@ -4,11 +4,12 @@ include_once 'ChromePhp.php';
 
 if (isset($_SERVER['REQUEST_METHOD'])) {
   $method = $_SERVER['REQUEST_METHOD'];
+  $request = json_decode(file_get_contents('php://input'), true);
 
   if ($method == 'GET') {
-    respondToGET();
+    respondToGET($request);
   } elseif ($method == 'POST') {
-    respondToPOST();
+    respondToPOST($request);
   }
 }
 ?>
@@ -24,21 +25,20 @@ function sendResponse($response) {
 
 
 /* Expects role_ids[] and username */
-function respondToPOST() {
-  $req = isset($_POST['roles']) && isset($_POST['username']);
-  if (!$req) { exit(); }
+function respondToPOST($request) {
+  $valid_req = isset($request['roles']) && isset($request['username']);
+  if (!$valid_req) { exit(); }
 
-  $pdo = get_db();
-  $roles = getAccessGroups($pdo);
-  $formUsername = $_POST['username'];
-  $formRoles = $_POST['roles'];
+  $roles = getAccessGroups();
+  $formUsername = $request['username'];
+  $formRoles = $request['roles'];
 
   foreach ($roles as $role) {
     $toBeAdded = in_array($role['id'], $formRoles);
     if ($toBeAdded) {
-      addAccessGroup($pdo, $formUsername, $role['id']);
+      addAccessGroup($formUsername, $role['id']);
     } else {
-      removeAccessGroup($pdo, $formUsername, $role['id']);
+      removeAccessGroup($formUsername, $role['id']);
     }
   }
 
@@ -47,11 +47,10 @@ function respondToPOST() {
 
 
 /* Returns array of roles and array of users' roles */
-function respondToGET() {
-  $pdo = get_db();
+function respondToGET($request) {
   $response = array();
-  $response['roles'] = getAccessGroups($pdo);
-  $response['users'] = getUsers($pdo);
+  $response['roles'] = getAccessGroups();
+  $response['users'] = getUsers();
 
   sendResponse($response);
 }
@@ -67,10 +66,11 @@ function respondToGET() {
   }]
 }
 */
-function getUsers($pdo) {
+function getUsers() {
+  $pdo = get_db();
   $sql = "SELECT sh_id, sh_username, ag_id, ag_name FROM Shopper
-          INNER JOIN AccessUserGroup ON sh_id = aug_sh_id
-          INNER JOIN AccessGroup ON ag_id = aug_ag_id
+          LEFT JOIN AccessUserGroup ON sh_id = aug_sh_id
+          LEFT JOIN AccessGroup ON ag_id = aug_ag_id
           ORDER BY sh_id";
   $stmt = $pdo->prepare($sql);
   $stmt->execute();
@@ -104,7 +104,8 @@ function getUsers($pdo) {
   }
 ]}
 */
-function getAccessGroups($pdo) {
+function getAccessGroups() {
+  $pdo = get_db();
   $sql = "SELECT ag_id, ag_name FROM AccessGroup ORDER BY ag_id";
   $stmt = $pdo->prepare($sql);
   $stmt->execute();
@@ -120,7 +121,8 @@ function getAccessGroups($pdo) {
 }
 
 
-function addAccessGroup($pdo, $username, $ag_id) {
+function addAccessGroup($username, $ag_id) {
+  $pdo = get_db();
   $sql = "SELECT sh_username FROM Shopper
           INNER JOIN AccessUserGroup ON sh_id = aug_sh_id
           INNER JOIN AccessGroup ON ag_id = aug_ag_id
@@ -131,14 +133,15 @@ function addAccessGroup($pdo, $username, $ag_id) {
   $exists = $stmt->fetch();
 
   if (!$exists) {
-    $user_id = getShopperIdFromName($pdo, $username);
+    $user_id = getShopperIdFromName($username);
     $sql = "INSERT INTO AccessUserGroup VALUES (NULL, ?, ?)";
     $stmt = $pdo->prepare($sql)->execute([$user_id, $ag_id]);
   }
 }
 
 
-function removeAccessGroup($pdo, $username, $ag_id) {
+function removeAccessGroup($username, $ag_id) {
+  $pdo = get_db();
   $sql = "SELECT sh_username FROM Shopper
           INNER JOIN AccessUserGroup ON sh_id = aug_sh_id
           INNER JOIN AccessGroup ON ag_id = aug_ag_id
@@ -149,14 +152,15 @@ function removeAccessGroup($pdo, $username, $ag_id) {
   $exists = $stmt->fetch();
 
   if ($exists) {
-    $user_id = getShopperIdFromName($pdo, $username);
+    $user_id = getShopperIdFromName($username);
     $sql = "DELETE FROM AccessUserGroup WHERE aug_sh_id = ? AND aug_ag_id = ?";
     $stmt = $pdo->prepare($sql)->execute([$user_id, $ag_id]);
   }
 }
 
 
-function getShopperIdFromName($pdo, $username) {
+function getShopperIdFromName($username) {
+  $pdo = get_db();
   $sql = "SELECT DISTINCT sh_id FROM Shopper WHERE sh_username = ?";
   $stmt = $pdo->prepare($sql);
   $stmt->execute([$username]);

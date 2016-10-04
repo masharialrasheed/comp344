@@ -91,7 +91,7 @@ $(function() {
       $.ajax({
         method: 'POST',
         url: 'php/roles.php',
-        data: {'username': currentUser, 'roles': roles},
+        data: JSON.stringify({'username': currentUser, 'roles': roles}),
         dataType: 'json'
       })
         .done(function() {
