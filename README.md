@@ -22,12 +22,11 @@
 - Functionality: Command table
 - Functionality: AccessGroup table
 - Functionality: Add/remove accessgroups from system
-- Redesign table (should there be multivalued col? popup buttons? more data? no changes?)
-- rename php/ to api/ ?
 
 
 <hr>
 ### Known Bugs
+- None
 
 
 <hr>

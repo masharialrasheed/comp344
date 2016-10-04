@@ -67,7 +67,7 @@ $(function() {
     /* Update user & roles data */
     function _update() {
       $.get({
-        url: 'php/roles.php',
+        url: 'api/useraccessgroup.php',
         dataType: 'json'
       })
         .done(function(d) {
@@ -90,7 +90,7 @@ $(function() {
 
       $.ajax({
         method: 'POST',
-        url: 'php/roles.php',
+        url: 'api/useraccessgroup.php',
         data: JSON.stringify({'username': currentUser, 'roles': roles}),
         dataType: 'json'
       })

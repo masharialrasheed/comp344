@@ -1,4 +1,5 @@
 <?php
+// Define DB_USER, DB_PASS, DB_NAME, DB_HOST
 require_once('config.php');
 
 function get_db() {
