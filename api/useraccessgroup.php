@@ -1,6 +1,6 @@
 <?php
 require_once '../php/functions.php';
-include_once '../php/ChromePhp.php';
+require_once '../php/ChromePhp.php';
 
 if (isset($_SERVER['REQUEST_METHOD'])) {
   $method = $_SERVER['REQUEST_METHOD'];

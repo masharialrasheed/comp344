@@ -14,10 +14,10 @@ $(function() {
     var tableTpl = '<thead><tr><th>id</th><th>Username</th><th>Roles</th></tr></thead>'+
       '<tbody>'+
       '{{#.}}'+
-        '<tr class="row-roles"><td>{{id}}</td><td class="username">{{username}}</td><td>{{roles}}</td></tr>'+
+        '<tr><td>{{id}}</td><td class="username">{{username}}</td><td>{{roles}}</td></tr>'+
       '{{/.}}'+
       '{{^.}}'+
-        '<tr class="row-roles"><td></td><td>No records found</td><td></td></tr>'+
+        '<tr><td></td><td>No records found</td><td></td></tr>'+
       '{{/.}}'+
       '</tbody>';
 
@@ -29,7 +29,7 @@ $(function() {
     /* Initialise module */
     function init() {
       // Open modal form on click of user row
-      $table.on('click', '.row-roles', function() {
+      $table.on('click', 'tr', function() {
         currentUser = $(this).find('.username').text();
         $modalTitle.text('Edit Roles - '+currentUser);
         // Prefill checkboxes
