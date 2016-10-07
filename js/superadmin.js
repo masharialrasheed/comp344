@@ -6,10 +6,10 @@ $(function() {
 
     /* Cache DOM elements */
     var $table  = $('#sa-table');
-    var $eModal = $('#emodal');
-    var $modalTitle = $eModal.find('.modal-title');
-    var $modalForm  = $eModal.find('.modal-body form');
-    var $modalSave  = $eModal.find('.modal-footer button:nth-child(2)');
+    var $editModal = $('#edit-modal');
+    var $modalTitle = $editModal.find('.modal-title');
+    var $modalForm  = $editModal.find('.modal-body form');
+    var $modalSave  = $editModal.find('.modal-footer button:nth-child(2)');
 
     var tableTpl = '<thead><tr><th>id</th><th>Username</th><th>Roles</th></tr></thead>'+
       '<tbody>'+
@@ -39,14 +39,14 @@ $(function() {
           if ($.inArray(id, user.role_ids) !== -1) { $(this).prop('checked', true); }
         });
         // Finally show modal
-        $eModal.modal('show');
+        $editModal.modal('show');
       });
 
       $modalSave.on('click', _submitModal);
 
       // Reset modal style when hidden
-      $eModal.on('hidden.bs.modal', function () {
-        styleBtn($modalSave, 'primary', 'Save');
+      $editModal.on('hidden.bs.modal', function () {
+        bsStyleBtn($modalSave, 'primary', 'Save');
         $modalForm.trigger('reset');
       });
 
@@ -95,19 +95,19 @@ $(function() {
         dataType: 'json'
       })
         .done(function() {
-          styleBtn($modalSave, 'success', 'Saved!');
+          bsStyleBtn($modalSave, 'success', 'Saved!');
         })
         .fail(function(jq, status, error) {
-          styleBtn($modalSave, 'danger', 'Error!');
+          bsStyleBtn($modalSave, 'danger', 'Error!');
           logAjaxError(jq, status, error);
         })
         .always(function() {
           _update();
-          setTimeout(function() { $eModal.modal('hide'); }, 500);
+          setTimeout(function() { $editModal.modal('hide'); }, 500);
       });
     }
 
-    function styleBtn(btn, style, text) {
+    function bsStyleBtn(btn, style, text) {
       if (style === 'success') {
         btn.removeClass('btn-primary btn-danger')
            .addClass('btn-success');
