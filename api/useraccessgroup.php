@@ -4,11 +4,12 @@ include_once '../php/ChromePhp.php';
 
 if (isset($_SERVER['REQUEST_METHOD'])) {
   $method = $_SERVER['REQUEST_METHOD'];
-  $request = json_decode(file_get_contents('php://input'), true);
 
   if ($method == 'GET') {
+    $request = $_GET;
     respondToGET($request);
   } elseif ($method == 'POST') {
+    $request = json_decode(file_get_contents('php://input'), true);
     respondToPOST($request);
   }
 }
