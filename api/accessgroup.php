@@ -6,7 +6,7 @@ if (isset($_SERVER['REQUEST_METHOD'])) {
   $method = $_SERVER['REQUEST_METHOD'];
 
   if ($method == 'GET') {
-    $response = getCommands();
+    $response = getAccessGroups();
     sendResponse($response);
   }
 }
@@ -21,22 +21,22 @@ function sendResponse($response) {
 
 
 /* Returns array of Commands */
-function getCommands() {
+function getAccessGroups() {
   $pdo = get_db();
-  $sql = "SELECT cmd_id, cmd_name, cmd_url
-          FROM Command";
+  $sql = "SELECT ag_id, ag_name, ag_desc
+          FROM AccessGroup";
   $stmt = $pdo->prepare($sql);
   $stmt->execute();
 
-  $commands = array();
+  $accessgroups = array();
   while ($row = $stmt->fetch()) {
-    $cmd         = array();
-    $cmd['id']   = $row['cmd_id'];
-    $cmd['name'] = $row['cmd_name'];
-    $cmd['url']  = $row['cmd_url'];
-    $commands[]  = $cmd;
+    $ag         = array();
+    $ag['id']   = $row['ag_id'];
+    $ag['name'] = $row['ag_name'];
+    $ag['desc'] = $row['ag_desc'];
+    $accessgroups[] = $ag;
   }
 
-  return $commands;
+  return $accessgroups;
 }
 ?>

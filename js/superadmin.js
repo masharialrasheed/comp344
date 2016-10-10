@@ -1,7 +1,7 @@
 $(function() {
 
   /* Module to load table of useraccessgroups */
-  var UAGModule = (function() {
+  var userAccessGroupModule = (function() {
     var myData = { 'users':[], 'roles':[], currentUser:'' };
 
     /* Cache DOM elements */
@@ -16,9 +16,7 @@ $(function() {
       '{{#.}}'+
         '<tr><td>{{id}}</td><td class="username">{{username}}</td><td>{{roles}}</td></tr>'+
       '{{/.}}'+
-      '{{^.}}'+
-        '<tr><td></td><td>No records found</td><td></td></tr>'+
-      '{{/.}}'+
+      '{{^.}}<tr><td></td><td>No records found</td><td></td></tr>{{/.}}'+
       '</tbody>';
 
     var checkboxTpl =
@@ -118,6 +116,61 @@ $(function() {
 
 
   /* Module to load table of commands */
+  var accessGroupModule = (function() {
+    var myData = { 'accessgroups': [] };
+
+    /* Cache DOM elements */
+    var $table  = $('#sa-table');
+
+    var tableTpl = '<thead><tr><th>id</th><th>AccessGroup</th><th>Description</th></tr></thead>'+
+      '<tbody>'+
+      '{{#.}}'+
+        '<tr><td>{{id}}</td><td>{{name}}</td><td>{{desc}}</td></tr>'+
+      '{{/.}}'+
+      '{{^.}}<tr><td></td><td>No records found</td><td></td></tr>{{/.}}'+
+      '</tbody>';
+
+    /* Initialise module */
+    function init() {
+      // Open modal form on click of row
+      // $table.on('click', 'tr', function() {});
+
+      _update();
+    }
+
+    function destroy() {
+      $table.html('');
+    }
+
+    /* Render module */
+    function _render() {
+      // Render table
+      $table.html(Mustache.render(tableTpl, myData.accessgroups));
+    }
+
+    /* Update module */
+    function _update() {
+      $.get({
+        url: 'api/accessgroup.php',
+        dataType: 'json'
+      })
+        .done(function(d) {
+          myData.accessgroups = d;
+        })
+        .fail(help.logAjaxError)
+        .always(function() {
+          _render();
+        });
+    }
+
+    return {
+      init: init,
+      destroy: destroy
+    };
+  })();
+
+
+  /* Module to load table of commands */
   var commandModule = (function() {
     var myData = { 'commands': [] };
 
@@ -129,9 +182,7 @@ $(function() {
       '{{#.}}'+
         '<tr><td>{{id}}</td><td>{{name}}</td><td>{{url}}</td></tr>'+
       '{{/.}}'+
-      '{{^.}}'+
-        '<tr><td></td><td>No records found</td><td></td></tr>'+
-      '{{/.}}'+
+      '{{^.}}<tr><td></td><td>No records found</td><td></td></tr>{{/.}}'+
       '</tbody>';
 
     /* Initialise module */
@@ -204,15 +255,25 @@ $(function() {
     $(this).siblings().removeClass('active');
     $(this).addClass('active');
     commandModule.destroy();
-    UAGModule.init();
+    accessGroupModule.destroy();
+    userAccessGroupModule.init();
+  });
+
+  $('#pill-ag').on('click', function() {
+    $(this).siblings().removeClass('active');
+    $(this).addClass('active');
+    commandModule.destroy();
+    userAccessGroupModule.destroy();
+    accessGroupModule.init();
   });
 
   $('#pill-cmd').on('click', function() {
     $(this).siblings().removeClass('active');
     $(this).addClass('active');
-    UAGModule.destroy();
+    accessGroupModule.destroy();
+    userAccessGroupModule.destroy();
     commandModule.init();
   });
 
-  UAGModule.init();
+  userAccessGroupModule.init();
 });
