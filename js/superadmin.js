@@ -182,13 +182,20 @@ $(function() {
       '{{#.}}'+
         '<tr><td>{{id}}</td><td>{{name}}</td><td>{{url}}</td></tr>'+
       '{{/.}}'+
+      '<tr class="new"><td>+</td><td>Add new command</td><td></td></tr>'+
       '{{^.}}<tr><td></td><td>No records found</td><td></td></tr>{{/.}}'+
       '</tbody>';
 
     /* Initialise module */
     function init() {
       // Open modal form on click of row
-      // $table.on('click', 'tr', function() {});
+      $table.on('click', 'tr', function() {
+        if ($(this).hasClass('new')) {
+          // open modal to enter new command
+        } else {
+          // open modal to edit existing command
+        }
+      });
 
       _update();
     }

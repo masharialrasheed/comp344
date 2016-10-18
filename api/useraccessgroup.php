@@ -37,9 +37,9 @@ function respondToPOST($request) {
   foreach ($roles as $role) {
     $toBeAdded = in_array($role['id'], $formRoles);
     if ($toBeAdded) {
-      addAccessGroup($formUsername, $role['id']);
+      addAccessUserGroup($formUsername, $role['id']);
     } else {
-      removeAccessGroup($formUsername, $role['id']);
+      removeAccessUserGroup($formUsername, $role['id']);
     }
   }
 
@@ -122,7 +122,7 @@ function getAccessGroups() {
 }
 
 
-function addAccessGroup($username, $ag_id) {
+function addAccessUserGroup($username, $ag_id) {
   $pdo = get_db();
   $sql = "SELECT sh_username FROM Shopper
           INNER JOIN AccessUserGroup ON sh_id = aug_sh_id
@@ -141,7 +141,7 @@ function addAccessGroup($username, $ag_id) {
 }
 
 
-function removeAccessGroup($username, $ag_id) {
+function removeAccessUserGroup($username, $ag_id) {
   $pdo = get_db();
   $sql = "SELECT sh_username FROM Shopper
           INNER JOIN AccessUserGroup ON sh_id = aug_sh_id

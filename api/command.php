@@ -39,4 +39,13 @@ function getCommands() {
 
   return $commands;
 }
+
+
+function addCommand($cmd_name, $cmd_url) {
+  $pdo = get_db();
+  $sql = "INSERT INTO Command (cmd_id, cmd_name, cmd_url) VALUES (NULL, ?, ?)";
+  $stmt = $pdo->prepare($sql);
+  $stmt->execute([$cmd_name, $cmd_url]);
+}
+
 ?>
