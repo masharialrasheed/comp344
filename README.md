@@ -15,7 +15,6 @@
 - Functionality: Command table with add/remove
 - Functionality: AccessGroup table with add/remove
 - Functionality: Auth and auth API
-- ORACLE support
 - Figure out commands and integration
 
 
