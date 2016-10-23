@@ -116,3 +116,5 @@ CREATE TABLE `Session` (
         REFERENCES Shopper(sh_id)
         ON DELETE CASCADE
 );
+
+ALTER TABLE `AccessUserGroup` ADD UNIQUE `composite_index`(`aug_sh_id`, `aug_ag_id`);
