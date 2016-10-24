@@ -20,7 +20,7 @@ INSERT INTO AccessGroup (AG_id, AG_name, AG_desc) VALUES
 
 
 /* AccessUserGroup Data */
-INSERT INTO AccessUserGroup (AUG_id, AUG_Shopper_id, AUG_AG_id) VALUES
+INSERT INTO AccessUserGroup (AUG_Shopper_id, AUG_AG_id) VALUES
   (1, 1),
   (2, 2),
   (3, 3),
