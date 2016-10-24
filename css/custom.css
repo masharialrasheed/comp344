@@ -10,6 +10,9 @@ body {
 tbody {
   font-size: 14px;
 }
+td.username {
+  font-weight: bold;
+}
 
 
 /* Keep footer near bottom when page not full */
