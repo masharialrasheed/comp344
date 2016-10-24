@@ -3,7 +3,7 @@
     static $connection;
 
     if (!isset($connection)) {
-      $db = require './databaseConfig.php'; // {host, name, user, pass}
+      $db = require 'databaseConfig.php'; // {host, name, user, pass}
       $dsn = "mysql:host={$db['host']};dbname={$db['name']};charset=utf8";
       $opt = [
           PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
