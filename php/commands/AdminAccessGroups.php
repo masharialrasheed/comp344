@@ -4,12 +4,7 @@
   require_once '../rbac.php';
 
 
-  if (!isset($_SESSION['username']) ||
-      !rbacCheck($_SESSION['username'], basename(__FILE__))
-  ) {
-    header('Location: LoginShopper.php');
-    exit();
-  }
+  rbacEnforce();
 
   function getAccessGroups() {
     $rows = query("SELECT AG_id AS id, AG_name AS name, AG_desc AS description FROM AccessGroup");

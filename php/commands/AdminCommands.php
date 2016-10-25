@@ -4,12 +4,7 @@
   require_once '../rbac.php';
 
 
-  if (!isset($_SESSION['username']) ||
-      !rbacCheck($_SESSION['username'], basename(__FILE__))
-  ) {
-    header('Location: LoginShopper.php');
-    exit();
-  }
+  rbacEnforce();
 
   /* Returns array of Commands */
   function getCommands() {
