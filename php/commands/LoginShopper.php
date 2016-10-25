@@ -75,23 +75,23 @@
         <input type="hidden" name = "stage" value = "process" />
 
         <div class="row form-group">
-          <div class="col-sm-3">
+          <div class="col-xs-4">
             <label for="username">Your username:</label>
           </div>
-          <div class="col-sm-6">
+          <div class="col-xs-8">
             <input name="username" class="form-control" maxlength="50" type="text">
           </div>
         </div>
         <div class="row form-group">
-          <div class="col-sm-3">
+          <div class="col-xs-4">
             <label for="password">Your password:</label>
           </div>
-          <div class="col-sm-6">
+          <div class="col-xs-8">
             <input name="password" class="form-control" maxlength="25" type="password">
           </div>
         </div>
         <div class="row form-group">
-          <div class="col-sm-6 col-sm-offset-3">
+          <div class="col-xs-8 col-xs-offset-4">
             <button class="btn btn-success btn-block" name="Submit" type="submit">Log In</button>
           </div>
         </div>
@@ -100,5 +100,7 @@
   </div>
 </div>
   <?php require_once '../footer.php'; ?>
+  <script src="../../js/jquery-3.1.1.js"></script>
+  <script src="../../js/bootstrap-3.3.7.js"></script>
 </html>
 <?php }	?>
