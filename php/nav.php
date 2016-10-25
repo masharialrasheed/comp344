@@ -6,7 +6,9 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="index.php">RBAC</a>
+      <a class="navbar-brand" href="../../index.php">RBAC</a>
+      <a class="navbar-brand" href="LoginShopper.php">Login</a>
+      <a class="navbar-brand pull-right" href="LogoutShopper.php">Logout</a>
     </div>
 
     <div id="navbar-main" class="collapse navbar-collapse">

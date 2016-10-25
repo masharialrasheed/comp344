@@ -1,8 +1,8 @@
 <?php
-  require_once '../database.php'
+  require_once '../database.php';
 
-  function check($username, $command) {
-    $params = [$username, $command];
+  function rbacCheck($username, $url) {
+    $params = [$username, $url];
     $rows = query(
       "SELECT sh_username FROM Shopper
         INNER JOIN AccessUserGroup ON shopper_id = AUG_Shopper_id
@@ -10,7 +10,7 @@
         INNER JOIN AccessGroupCommands ON AGC_AG_id = AG_id
         INNER JOIN Commands ON AGC_Cmd_id = Cmd_id
         WHERE sh_username = ?
-        AND cmd_name = ?", $params);
+        AND Cmd_URL = ?", $params);
 
     return $rows ? true : false;
   }
