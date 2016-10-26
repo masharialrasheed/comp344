@@ -48,7 +48,7 @@
   <div class="container content">
     <div class="row">
       <div class="col-sm-6 col-sm-offset-3">
-        <h1>You're already logged in!</h1>
+        <h1>You're already logged in as <?php echo $_SESSION['username'] ?>!</h1>
       </div>
     </div>
   </div>
