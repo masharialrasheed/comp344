@@ -1,11 +1,48 @@
 <?php
+  require_once 'database.php';
+
   function navLink($name, $url) {
     $active = '';
     if (basename($_SERVER["PHP_SELF"]) == $url) {
       $active = 'active';
     }
-    echo "<li class=\"{$active}\"><a href={$url}>{$name}</a></li>";
+    return "<li class=\"{$active}\"><a href={$url}>{$name}</a></li>";
   }
+
+  function getAccessGroupsOf() {
+    $params = [$_SESSION['username']];
+    $rows = query("SELECT AG_id AS id, AG_name AS name
+                    FROM AccessGroup AG
+                    INNER JOIN AccessUserGroup AUG ON AG_id = AUG_AG_id
+                    INNER JOIN Shopper ON AUG_Shopper_id = shopper_id
+                    WHERE sh_username = ?", $params);
+    return $rows;
+  }
+
+  function getCommandsOf($ag_id) {
+    $params = [$ag_id];
+    $rows = query("SELECT Cmd_name AS name, Cmd_URL AS url
+                    FROM Commands cmd
+                    INNER JOIN AccessGroupCommands agc ON Cmd_id = AGC_Cmd_id
+                    WHERE AGC_AG_id = ?", $params);
+    return $rows;
+  }
+
+  function getAGNavDropdown($ag_id, $ag_name) {
+    $dropdown = "<li class=\"dropdown\">"
+              . "<a class=\"dropdown-toggle\" data-toggle=\"dropdown\">{$ag_name} <span class=\"caret\"></span></a>"
+              . "<ul class=\"dropdown-menu\">";
+    $commands = getCommandsOf($ag_id);
+    foreach ($commands as $cmd) {
+      $dropdown .= navLink($cmd['name'], $cmd['url']);
+    }
+    $dropdown .= "</ul></li>";
+    
+    return $dropdown;
+  }
+
+
+
 ?>
 
 <!-- Static navbar -->
@@ -22,11 +59,19 @@
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
+        <?php
+        if (isset($_SESSION['username'])) {
+          $access_groups = getAccessGroupsOf($_SESSION['username']);
+          foreach ($access_groups as $ag) {
+            echo getAGNavDropdown($ag['id'], $ag['name']);
+          }
+        }
+        ?>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <?php
-        navLink('Login', 'LoginShopper.php');
-        navLink('Logout', 'LogoutShopper.php');
+        echo navLink('Login', 'LoginShopper.php');
+        echo navLink('Logout', 'LogoutShopper.php');
         ?>
       </ul>
     </div>
