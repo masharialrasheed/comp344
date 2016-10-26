@@ -1,4 +1,8 @@
-<?php require_once '../php/session.php'; ?>
+<?php
+  require_once '../php/session.php';
+  require_once '../php/rbac.php'
+  rbacEnforce();
+?>
 
 <html>
 <head>
