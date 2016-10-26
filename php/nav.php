@@ -37,7 +37,7 @@
       $dropdown .= navLink($cmd['name'], $cmd['url']);
     }
     $dropdown .= "</ul></li>";
-    
+
     return $dropdown;
   }
 
@@ -59,6 +59,16 @@
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
+
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown">Shop <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+          <?php
+            echo navLink('Display Categories', 'DisplayCategories.php');
+          ?>
+          </ul>
+        </li>
+
         <?php
         if (isset($_SESSION['username'])) {
           $access_groups = getAccessGroupsOf($_SESSION['username']);
