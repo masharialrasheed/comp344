@@ -8,6 +8,7 @@
 
 	function store_session_close() {
 		$store_session_con = null;
+    return TRUE;
 	}
 
 	function store_session_read($session_id) {
@@ -17,7 +18,7 @@
 		if (count($rows)) {
 			return $rows[0]['data'];
 		}
-		return FALSE;
+		return '';
 	}
 
 	function store_session_write($session_id, $session_data){
@@ -30,11 +31,13 @@
     } else {
       query("REPLACE Session (id, data) VALUES (?,?)", $params);
     }
+    return TRUE;
 	}
 
 	function store_session_destroy($session_id){
     $params = [$session_id];
 		query("DELETE FROM Session WHERE id = ?", $params);
+    return TRUE;
 	}
 
 	function store_session_gc($gc_maxlife){
