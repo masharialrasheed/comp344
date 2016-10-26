@@ -64,7 +64,9 @@
           <a class="dropdown-toggle" data-toggle="dropdown">Shop <span class="caret"></span></a>
           <ul class="dropdown-menu">
           <?php
-            echo navLink('Display Categories', 'DisplayCategories.php');
+            echo navLink('Display Category', 'DisplayCategory.php');
+            echo navLink('Display Products', 'DisplayProducts.php');
+            echo navLink('Display Product',  'DisplayProduct.php');
           ?>
           </ul>
         </li>
