@@ -32,13 +32,19 @@ INSERT INTO AccessUserGroup (AUG_Shopper_id, AUG_AG_id) VALUES
 
 /* Command Data */
 INSERT INTO Commands (Cmd_id, Cmd_name, Cmd_URL) VALUES
-  (1,  'superadmin_users',  'AdminUsers.php'),
-  (2,  'superadmin_ag',     'AdminAccessGroups.php'),
-  (3,  'superadmin_cmd',    'AdminCommands.php');
+  (1,  'Administrate Users',         'AdminUsers.php'),
+  (2,  'Administrate AccessGroups',  'AdminAccessGroups.php'),
+  (3,  'Administrate Commands',      'AdminCommands.php'),
+  (4,  'Add Category', 'AddCategory.php'),
+  (5,  'Add Product',  'AddProduct.php'),
+  (6,  'Display Picklist', 'DisplayPickList.php');
 
 
 /* AccessGroupCommand Data */
 INSERT INTO AccessGroupCommands (AGC_AG_id, AGC_Cmd_id, AGC_desc) VALUES
   (1, 1, 'Access page to allocate user\'s AccessGroups'),
   (1, 2, 'Access page to create/delete AccessGroups'),
-  (1, 3, 'Access page to create/delete Commands');
+  (1, 3, 'Access page to create/delete Commands'),
+  (2, 4, 'Add a category to the store'),
+  (2, 5, 'Add a product to the store'),
+  (4, 6, 'Display the picklist');
