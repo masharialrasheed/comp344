@@ -56,11 +56,15 @@ return array(
 ### Commands
 | Role Name  | Command | URL |
 | ---------- | ------- | --- |
-| Registered Shopper |  | .php |
+| Guest | Display Category | DisplayCategory.php |
+|       | Display Products | DisplayProducts.php |
+|       | Display Product | DisplayProduct.php |
+| Registered Shopper  | Pay? | Pay? |
 | Super Administrator | Administrate Users        | AdminUsers.php        |
 |                     | Administrate AccessGroups | AdminAccessGroups.php |
 |                     | Administrate Commands     | AdminCommands.php     |
 | Catalogue Manager | Add Category | AddCategory.php |
 |                   | Add Product  | AddProduct.php  |
-| Customer Service Manager | | .php |
-| Manager | | .php |
+| Warehouse Staff | Display Pick List | DisplayPickList.php |
+| Customer Service Manager | |  |
+| Manager | |  |
