@@ -54,11 +54,13 @@ return array(
 
 <hr>
 ### Commands
-| Role Name                | Command | URL                 |
-| ------------------------ | ------- | ------------------- |
-| Guest                    |         |                .php |
-| Registered Shopper       |         |                .php |
-| Super Administrator      |         |                .php |
-| Catalogue Manager        |         |                .php |
-| Customer Service Manager |         |                .php |
-| Manager                  |         |                .php |
+| Role Name  | Command | URL |
+| ---------- | ------- | --- |
+| Registered Shopper |  | .php |
+| Super Administrator | Administrate Users        | AdminUsers.php        |
+|                     | Administrate AccessGroups | AdminAccessGroups.php |
+|                     | Administrate Commands     | AdminCommands.php     |
+| Catalogue Manager | Add Category | AddCategory.php |
+|                   | Add Product  | AddProduct.php  |
+| Customer Service Manager | | .php |
+| Manager | | .php |
