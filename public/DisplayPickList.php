@@ -1,6 +1,7 @@
 <?php
   require_once '../php/session.php';
-  require_once '../php/rbac.php'
+  require_once '../php/rbac.php';
+
   rbacEnforce();
 ?>
 
