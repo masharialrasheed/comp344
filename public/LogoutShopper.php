@@ -1,5 +1,5 @@
 <?php
-  require_once('../session.php');
+  require_once('../php/session.php');
 
   function logout() {
   	session_regenerate_id(TRUE);

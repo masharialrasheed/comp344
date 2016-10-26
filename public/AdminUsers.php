@@ -1,7 +1,7 @@
 <?php
-  require_once '../database.php';
-  require_once '../session.php';
-  require_once '../rbac.php';
+  require_once '../php/database.php';
+  require_once '../php/session.php';
+  require_once '../php/rbac.php';
 
 
   rbacEnforce();
@@ -42,11 +42,11 @@
 <head>
   <title>SuperAdmin - Users</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-  <link href="../../css/bootstrap-3.3.7.css" rel="stylesheet">
-  <link href="../../css/custom.css" rel="stylesheet">
+  <link href="../css/bootstrap-3.3.7.css" rel="stylesheet">
+  <link href="../css/custom.css" rel="stylesheet">
 </head>
 <body>
-<?php require_once '../nav.php'; ?>
+<?php require_once '../php/nav.php'; ?>
 
 <div class="container content">
   <div class="row">
@@ -89,10 +89,10 @@
   </div>
 </div>
 
-<?php require_once '../footer.php'; ?>
+<?php require_once '../php/footer.php'; ?>
 
-<script src="../../js/jquery-3.1.1.js"></script>
-<script src="../../js/bootstrap-3.3.7.js"></script>
+<script src="../js/jquery-3.1.1.js"></script>
+<script src="../js/bootstrap-3.3.7.js"></script>
 <script>
 </script>
 </body>

@@ -1,5 +1,5 @@
 <?php
-  require_once '../database.php';
+  require_once 'database.php';
 
   function rbacCheck($username, $url) {
     $params = [$username, $url];
