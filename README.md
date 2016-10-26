@@ -2,25 +2,35 @@
 
 
 <hr>
-### Design
-- Everyone has Guest permissions
-- Anyone logged in has Registered Shopper permissions
-- The superadmin page assumes that there will not be many
-  Super Administrators working concurrently and they will work with care.
-  Thus caching is appropriate.
+### Setup
+1. Setup PHP & MySQL environment
+2. Create php/databaseConfig.php with your MySQL credentials as follows
+```
+<?php
+return array(
+  'user' => '',
+  'pass' => '',
+  'name' => '',
+  'host' => ''
+);
+?>
+```
+3. Run db/create.sql then db/insert.sql
+   (add a `USE dbname;` at the start of each if not running through a tool such as phpmyadmin)
+4. Run local server and open public/ in your web browser
 
 
 <hr>
 ### To Do
+- Add/remove Users/Shoppers from AccessGroups
 - Functionality: Command table with add/remove
 - Functionality: AccessGroup table with add/remove
-- Functionality: Auth and auth API
 - Figure out commands and integration
 
 
 <hr>
 ### Done
-- Add/remove Users/Shoppers from AccessGroups
+- Auth/RBAC
 
 
 <hr>
