@@ -1,7 +1,29 @@
 <?php
+  require_once('../php/database.php');
   require_once('../php/session.php');
-  require_once('../php/login.php');
 
+  function check_credentials($username, $password) {
+  	$rows = query("SELECT shopper_id as id, sh_password as password FROM Shopper WHERE sh_username = ?", [$username]);
+    if ($rows && $rows[0]['id']) {
+  		if (password_verify($password, $rows[0]['password'])) {
+        return $rows[0]['id'];
+    	}
+    }
+  	else return FALSE;
+  }
+
+  function login($username, $password) {
+  	$shopper_id = check_credentials($username, $password);
+
+  	if ($shopper_id > 0) {
+  		session_regenerate_id(TRUE);
+  		$sessid = session_id();
+  		query("INSERT INTO Session (id, Shopper_id) VALUES (?,?)", [$sessid, $shopper_id]);
+      $_SESSION['username'] = $username;
+  		return TRUE;
+  	}
+    else return FALSE;
+  }
 
 	if (isset($_POST['username']) && isset($_POST['password'])) {
     if (login($_POST['username'], $_POST['password'])) {
@@ -16,8 +38,7 @@
 <html>
 <head>
 <title>Shopper Login</title>
-<link href="../css/bootstrap-3.3.7.css" rel="stylesheet">
-<link href="../css/custom.css" rel="stylesheet">
+<?php require_once '../php/styles.php'; ?>
 </head>
 <body>
 <?php require_once '../php/nav.php'; ?>
@@ -68,6 +89,4 @@
 <?php } ?>
 
 <?php require_once '../php/footer.php'; ?>
-<script src="../js/jquery-3.1.1.js"></script>
-<script src="../js/bootstrap-3.3.7.js"></script>
 </html>
