@@ -1,1 +1,7 @@
 Options -Indexes
+
+ErrorDocument 400 http://comp344.com
+ErrorDocument 401 http://comp344.com
+ErrorDocument 403 http://comp344.com
+ErrorDocument 404 http://comp344.com
+ErrorDocument 500 http://comp344.com
