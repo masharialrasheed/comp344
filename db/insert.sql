@@ -1,4 +1,4 @@
-USE rbac;
+USE `store3.3`;
 
 /* Shopper Data */
 INSERT INTO Shopper (shopper_id, sh_username, sh_password, sh_email, sh_phone) VALUES

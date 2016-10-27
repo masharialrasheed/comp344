@@ -10,7 +10,7 @@
 return array(
   'user' => '',
   'pass' => '',
-  'name' => 'rbac',
+  'name' => 'store3.3',
   'host' => '127.0.0.1'
 );
 ?>
@@ -28,6 +28,8 @@ return array(
 - Functionality: Command table with add/remove
 - Functionality: AccessGroup table with add/remove
 - Figure out commands and integration
+- LOGGING?
+- webpack min js
 
 
 <hr>
