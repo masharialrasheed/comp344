@@ -18,19 +18,16 @@
   <br><br><br>
   <div class="row">
     <div class="col-md-4">
-      <h2>This</h2>
-      <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-      <p><a class="btn btn-default" href="#" role="button">View</a></p>
+      <h2>Secure</h2>
+      <p>Through a Role Based Access Control scheme users may only access pages they are permitted to, else they are redirected to the login page.</p>
     </div>
     <div class="col-md-4">
-      <h2>That</h2>
-      <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-      <p><a class="btn btn-default" href="#" role="button">View</a></p>
+      <h2>Dynamic</h2>
+      <p>The navigation bar allows access to the shop for guests and users, and dynamically adds navigation groups based on a user's access groups.</p>
    </div>
     <div class="col-md-4">
-      <h2>The other</h2>
-      <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-      <p><a class="btn btn-default" href="#" role="button">View</a></p>
+      <h2>Powerful</h2>
+      <p>The superadmin has full control over the access control system. Through the control panel (s)he may create commands, create access groups, assign users to access groups, assign commands to access groups and etc. This functionality is currently restricted on this site.</p>
     </div>
   </div>
 
