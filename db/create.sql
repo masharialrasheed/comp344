@@ -1,3 +1,5 @@
+USE rbac;
+
 /* Drop tables if exist */
 SET FOREIGN_KEY_CHECKS=0;
 DROP TABLE IF EXISTS `ShopperGroup`;

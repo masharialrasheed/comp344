@@ -3,21 +3,23 @@
 
 <hr>
 ### Setup
-1. Setup PHP & MySQL environment
+1. Setup LAMP environment
 2. Create php/databaseConfig.php with your MySQL credentials as follows
 ```
 <?php
 return array(
   'user' => '',
   'pass' => '',
-  'name' => '',
-  'host' => ''
+  'name' => 'rbac',
+  'host' => '127.0.0.1'
 );
 ?>
 ```
 3. Run db/create.sql then db/insert.sql
-   (add a `USE dbname;` at the start of each if not running through a tool such as phpmyadmin)
-4. Run local server and open public/ in your web browser
+4. Place comp344-src/ in `wherever`/
+5. If production: Change httpd.conf DocumentRoot to `wherever`/comp344-src/public/
+6. Run server
+
 
 
 <hr>
