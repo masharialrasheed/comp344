@@ -2,10 +2,8 @@
   require_once 'database.php';
 
   function navLink($name, $url) {
-    $active = '';
-    if (basename($_SERVER["PHP_SELF"]) == $url) {
-      $active = 'active';
-    }
+    $active = (basename($_SERVER["PHP_SELF"]) == $url) ? 'active' : '';
+
     return "<li class=\"{$active}\"><a href={$url}>{$name}</a></li>";
   }
 
@@ -82,8 +80,12 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <?php
-        echo navLink('Login', 'LoginShopper.php');
-        echo navLink('Logout', 'LogoutShopper.php');
+        if (isset($_SESSION['username'])) {
+          echo navLink('Logout', 'LogoutShopper.php');
+        } else {
+          echo navLink('Login', 'LoginShopper.php');
+          echo navLink('Register', 'Register.php');
+        }
         ?>
       </ul>
     </div>
