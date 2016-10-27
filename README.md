@@ -3,7 +3,7 @@
 
 <hr>
 ### Setup
-1. Setup LAMP environment
+1. Setup Apache, MySQL, PHP environment
 2. Create php/databaseConfig.php with your MySQL credentials as follows
 ```
 <?php
