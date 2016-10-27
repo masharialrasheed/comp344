@@ -1,3 +1,4 @@
+<?php require_once '../php/session.php'; ?>
 <html>
 <head>
   <title></title>
