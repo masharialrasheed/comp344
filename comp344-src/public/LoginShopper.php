@@ -46,11 +46,7 @@
 <?php if (isset($_SESSION['username'])) { ?>
 
   <div class="container content">
-    <div class="row">
-      <div class="col-sm-6 col-sm-offset-3">
-        <h1>You're already logged in as <?php echo $_SESSION['username'] ?>!</h1>
-      </div>
-    </div>
+    <div class="alert alert-info">You're already logged in as <?php echo $_SESSION['username'] ?>!</div>
   </div>
 
 <?php } else { ?>
