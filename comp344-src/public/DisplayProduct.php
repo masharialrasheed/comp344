@@ -26,7 +26,7 @@
 
         <div class="well">
           <div class="text-right">
-            <a class="btn btn-primary">Leave a Review</a>
+            <a href="PostReview.php" class="btn btn-primary">Leave a Review</a>
           </div>
           <hr>
           <div class="row">
