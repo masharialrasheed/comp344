@@ -20,13 +20,13 @@
               <h4 class="pull-right">$29.99</h4>
               <h3>Product</h3>
               <p>This is a fantastic product!</p>
-
           </div>
         </div>
 
-        <div class="well">
+        <div >
+          <br><br>
           <div class="text-right">
-            <a href="PostReview.php" class="btn btn-primary">Leave a Review</a>
+            <a href="PostReview.php" class="btn btn-primary">Write a review</a>
           </div>
           <hr>
           <div class="row">
