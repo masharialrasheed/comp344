@@ -28,7 +28,7 @@
    </div>
     <div class="col-md-4">
       <h2>Powerful</h2>
-      <p>The superadmin has full control over the access control system. Through the control panel (s)he may create commands, create access groups, assign users to access groups, assign commands to access groups and etc. This functionality is currently restricted on this site.</p>
+      <p>The superadmin has full control over the access control system. Through the control panel she may create commands, create access groups, assign users to access groups, assign commands to access groups and etc. This functionality is currently restricted on this site.</p>
     </div>
   </div>
 
