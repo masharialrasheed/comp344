@@ -10,7 +10,119 @@
 
 <div class="container content">
 
-  Display Products
+
+  <div class="row">
+    <ol class="breadcrumb">
+      <li><a>Home</a></li>
+      <li><a>Category 1</a></li>
+      <li class="active">Current Category</li>
+    </ol>
+  </div>
+
+  <div class="row">
+
+      <div class="col-sm-4">
+        <div class="thumbnail">
+          <!-- <img src="..." alt="..."> -->
+          <div class="caption">
+            <h4>Product</h4>
+            <p>This is a great product!</p>
+            <p><a href="DisplayProduct.php" class="btn btn-default">Buy now!</a></p>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="thumbnail">
+          <!-- <img src="..." alt="..."> -->
+          <div class="caption">
+            <h4>Product</h4>
+            <p>This is a great product!</p>
+            <p><a href="DisplayProduct.php" class="btn btn-default">Buy now!</a></p>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="thumbnail">
+          <!-- <img src="..." alt="..."> -->
+          <div class="caption">
+            <h4>Product</h4>
+            <p>This is a great product!</p>
+            <p><a href="DisplayProduct.php" class="btn btn-default">Buy now!</a></p>
+          </div>
+        </div>
+      </div>
+
+  </div>
+
+  <div class="row">
+
+      <div class="col-sm-4">
+        <div class="thumbnail">
+          <!-- <img src="..." alt="..."> -->
+          <div class="caption">
+            <h4>Product</h4>
+            <p>This is a great product!</p>
+            <p><a href="DisplayProduct.php" class="btn btn-default">Buy now!</a></p>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="thumbnail">
+          <!-- <img src="..." alt="..."> -->
+          <div class="caption">
+            <h4>Product</h4>
+            <p>This is a great product!</p>
+            <p><a href="DisplayProduct.php" class="btn btn-default">Buy now!</a></p>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="thumbnail">
+          <!-- <img src="..." alt="..."> -->
+          <div class="caption">
+            <h4>Product</h4>
+            <p>This is a great product!</p>
+            <p><a href="DisplayProduct.php" class="btn btn-default">Buy now!</a></p>
+          </div>
+        </div>
+      </div>
+
+  </div>
+
+  <div class="row">
+
+      <div class="col-sm-4">
+        <div class="thumbnail">
+          <!-- <img src="..." alt="..."> -->
+          <div class="caption">
+            <h4>Product</h4>
+            <p>This is a great product!</p>
+            <p><a href="DisplayProduct.php" class="btn btn-default">Buy now!</a></p>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="thumbnail">
+          <!-- <img src="..." alt="..."> -->
+          <div class="caption">
+            <h4>Product</h4>
+            <p>This is a great product!</p>
+            <p><a href="DisplayProduct.php" class="btn btn-default">Buy now!</a></p>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="thumbnail">
+          <!-- <img src="..." alt="..."> -->
+          <div class="caption">
+            <h4>Product</h4>
+            <p>This is a great product!</p>
+            <p><a href="DisplayProduct.php" class="btn btn-default">Buy now!</a></p>
+          </div>
+        </div>
+      </div>
+
+  </div>
 
 </div>
 
