@@ -34,7 +34,7 @@
           <div class="caption">
             <h4>Product</h4>
             <p>This is a great product!</p>
-            <p><a class="btn btn-default">Buy now!</a></p>
+            <p><a href="DisplayProduct.php" class="btn btn-default">Buy now!</a></p>
           </div>
         </div>
       </div>
@@ -44,7 +44,7 @@
           <div class="caption">
             <h4>Product</h4>
             <p>This is a great product!</p>
-            <p><a class="btn btn-default">Buy now!</a></p>
+            <p><a href="DisplayProduct.php" class="btn btn-default">Buy now!</a></p>
           </div>
         </div>
       </div>
@@ -54,42 +54,7 @@
           <div class="caption">
             <h4>Product</h4>
             <p>This is a great product!</p>
-            <p><a class="btn btn-default">Buy now!</a></p>
-          </div>
-        </div>
-      </div>
-
-  </div>
-
-  <div class="row">
-
-      <div class="col-sm-4">
-        <div class="thumbnail">
-          <!-- <img src="..." alt="..."> -->
-          <div class="caption">
-            <h4>Product</h4>
-            <p>This is a great product!</p>
-            <p><a class="btn btn-default">Buy now!</a></p>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-4">
-        <div class="thumbnail">
-          <!-- <img src="..." alt="..."> -->
-          <div class="caption">
-            <h4>Product</h4>
-            <p>This is a great product!</p>
-            <p><a class="btn btn-default">Buy now!</a></p>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-4">
-        <div class="thumbnail">
-          <!-- <img src="..." alt="..."> -->
-          <div class="caption">
-            <h4>Product</h4>
-            <p>This is a great product!</p>
-            <p><a class="btn btn-default">Buy now!</a></p>
+            <p><a href="DisplayProduct.php" class="btn btn-default">Buy now!</a></p>
           </div>
         </div>
       </div>
@@ -104,7 +69,7 @@
           <div class="caption">
             <h4>Product</h4>
             <p>This is a great product!</p>
-            <p><a class="btn btn-default">Buy now!</a></p>
+            <p><a href="DisplayProduct.php" class="btn btn-default">Buy now!</a></p>
           </div>
         </div>
       </div>
@@ -114,7 +79,7 @@
           <div class="caption">
             <h4>Product</h4>
             <p>This is a great product!</p>
-            <p><a class="btn btn-default">Buy now!</a></p>
+            <p><a href="DisplayProduct.php" class="btn btn-default">Buy now!</a></p>
           </div>
         </div>
       </div>
@@ -124,7 +89,42 @@
           <div class="caption">
             <h4>Product</h4>
             <p>This is a great product!</p>
-            <p><a class="btn btn-default">Buy now!</a></p>
+            <p><a href="DisplayProduct.php" class="btn btn-default">Buy now!</a></p>
+          </div>
+        </div>
+      </div>
+
+  </div>
+
+  <div class="row">
+
+      <div class="col-sm-4">
+        <div class="thumbnail">
+          <!-- <img src="..." alt="..."> -->
+          <div class="caption">
+            <h4>Product</h4>
+            <p>This is a great product!</p>
+            <p><a href="DisplayProduct.php" class="btn btn-default">Buy now!</a></p>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="thumbnail">
+          <!-- <img src="..." alt="..."> -->
+          <div class="caption">
+            <h4>Product</h4>
+            <p>This is a great product!</p>
+            <p><a href="DisplayProduct.php" class="btn btn-default">Buy now!</a></p>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="thumbnail">
+          <!-- <img src="..." alt="..."> -->
+          <div class="caption">
+            <h4>Product</h4>
+            <p>This is a great product!</p>
+            <p><a href="DisplayProduct.php" class="btn btn-default">Buy now!</a></p>
           </div>
         </div>
       </div>
