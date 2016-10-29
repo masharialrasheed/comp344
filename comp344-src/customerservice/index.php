@@ -10,7 +10,11 @@
 
 <div class="container content">
 
-  Display Orders
+  <?php
+  	if (isset($_SESSION['username']) {
+		echo $_SESSION['username'];
+	}
+  ?>
 
 </div>
 
