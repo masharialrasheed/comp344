@@ -68,6 +68,9 @@
           ?>
           </ul>
         </li>
+        <li>
+        Customer Service
+        </li>
 
         <?php
         if (isset($_SESSION['username'])) {
