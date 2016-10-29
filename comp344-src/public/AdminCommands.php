@@ -23,15 +23,17 @@
 <?php require_once '../php/nav.php'; ?>
 
 <div class="container content">
+
   <div class="row">
-    <div class="col-sm-3">
-      <ul class="nav nav-pills nav-stacked">
+      <ul class="nav nav-tabs nav-justified">
         <li id="pill-uag"><a href="AdminUsers.php">Users</a></li>
         <li id="pill-ag"><a href="AdminAccessGroups.php">AccessGroups</a></li>
         <li id="pill-cmd" class="active"><a href="AdminCommands.php">Commands</a></li>
       </ul>
-    </div>
-    <div class="col-sm-9">
+  </div>
+  <br>
+
+  <div class="row">
       <table id="sa-table" class="table table-condensed table-hover">
         <thead><tr><th>ID</th><th>Command</th><th>URL</th></tr></thead>
           <tbody>
@@ -40,8 +42,9 @@
           } ?>
           </tbody>
       </table>
-      <button class="btn btn-success pull-right" type="button">New Command</button>
-    </div>
+      <button class="btn btn-default btn-block" type="button">New Command</button>
+  </div>
+
   </div>
 </div>
 

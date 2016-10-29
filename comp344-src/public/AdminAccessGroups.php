@@ -24,24 +24,23 @@
 
 <div class="container content">
   <div class="row">
-    <div class="col-sm-3">
-      <ul class="nav nav-pills nav-stacked">
-        <li id="pill-uag"><a href="AdminUsers.php">Users</a></li>
-        <li id="pill-ag" class="active"><a href="AdminAccessGroups.php">AccessGroups</a></li>
-        <li id="pill-cmd"><a href="AdminCommands.php">Commands</a></li>
-      </ul>
-    </div>
-    <div class="col-sm-9">
-      <table id="sa-table" class="table table-condensed table-hover">
-        <thead><tr><th>ID</th><th>AccessGroup</th><th>Description</th></tr></thead>
-          <tbody>
-          <?php foreach ($roles as $r) {
-            echo "<tr><td>{$r['id']}</td><td>{$r['name']}</td><td>{$r['description']}</td></tr>";
-          } ?>
-          </tbody>
-      </table>
-      <button class="btn btn-success pull-right" type="button">New AccessGroup</button>
-    </div>
+    <ul class="nav nav-tabs nav-justified">
+      <li id="pill-uag"><a href="AdminUsers.php">Users</a></li>
+      <li id="pill-ag" class="active"><a href="AdminAccessGroups.php">AccessGroups</a></li>
+      <li id="pill-cmd"><a href="AdminCommands.php">Commands</a></li>
+    </ul>
+  </div>
+  <br>
+  <div class="row table-responsive">
+    <table id="sa-table" class="table table-condensed table-hover">
+      <thead><tr><th>ID</th><th>AccessGroup</th><th>Description</th></tr></thead>
+        <tbody>
+        <?php foreach ($roles as $r) {
+          echo "<tr><td>{$r['id']}</td><td>{$r['name']}</td><td>{$r['description']}</td></tr>";
+        } ?>
+        </tbody>
+    </table>
+    <button class="btn btn-default btn-block" type="button">New AccessGroup</button>
   </div>
 </div>
 

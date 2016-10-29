@@ -48,23 +48,23 @@
 
 <div class="container content">
   <div class="row">
-    <div class="col-sm-3">
-      <ul class="nav nav-pills nav-stacked">
-        <li id="pill-uag" class="active"><a href="AdminUsers.php">Users</a></li>
-        <li id="pill-ag"><a href="AdminAccessGroups.php">AccessGroups</a></li>
-        <li id="pill-cmd"><a href="AdminCommands.php">Commands</a></li>
-      </ul>
-    </div>
-    <div class="col-sm-9">
-      <table id="sa-table" class="table table-condensed table-hover">
-        <thead><tr><th>ID</th><th>Username</th><th>Roles</th></tr></thead>
-          <tbody>
-          <?php foreach ($users as $u) {
-            echo "<tr><td>{$u['id']}</td><td class='username'>{$u['username']}</td><td>{$u['roles']}</td></tr>";
-          } ?>
-          </tbody>
-      </table>
-    </div>
+    <ul class="nav nav-tabs nav-justified">
+      <li id="pill-uag" class="active"><a href="AdminUsers.php">Users</a></li>
+      <li id="pill-ag"><a href="AdminAccessGroups.php">AccessGroups</a></li>
+      <li id="pill-cmd"><a href="AdminCommands.php">Commands</a></li>
+    </ul>
+  </div>
+  <br>
+
+  <div class="row">
+    <table id="sa-table" class="table table-condensed table-hover">
+      <thead><tr><th>ID</th><th>Username</th><th>Roles</th></tr></thead>
+        <tbody>
+        <?php foreach ($users as $u) {
+          echo "<tr><td>{$u['id']}</td><td class='username'>{$u['username']}</td><td>{$u['roles']}</td></tr>";
+        } ?>
+        </tbody>
+    </table>
   </div>
 </div>
 
