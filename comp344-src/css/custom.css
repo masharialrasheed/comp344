@@ -5,19 +5,9 @@
 tbody {
   font-size: 14px;
 }
-td.username {
-  font-weight: bold;
-}
 
 
 /* Keep footer near bottom when page not full */
 .content {
   min-height: 80%;
-}
-
-#index.jumbotron {
-  background: #FFF url("../img/jumbo.jpg") center center;*/
-  background-size: cover;
-  color: #4E342E;
-  text-shadow: 1px 1px 2px #FFF;
 }
