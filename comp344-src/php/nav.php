@@ -81,10 +81,10 @@
       <ul class="nav navbar-nav navbar-right">
         <?php
         if (isset($_SESSION['username'])) {
-          echo navLink('Logout', 'LogoutShopper.php');
+          echo navLink('Logout', '/public/LogoutShopper.php');
         } else {
-          echo navLink('Login', 'LoginShopper.php');
-          echo navLink('Register', 'Register.php');
+          echo navLink('Login', '/public/LoginShopper.php');
+          echo navLink('Register', '/public/Register.php');
         }
         ?>
       </ul>
