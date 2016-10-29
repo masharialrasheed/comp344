@@ -69,7 +69,7 @@
           </ul>
         </li>
         <li>
-        Customer Service
+        <a href="/customerservice">Customer Service</a>
         </li>
 
         <?php
