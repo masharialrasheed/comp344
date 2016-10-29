@@ -3,6 +3,14 @@
 <head>
   <title></title>
   <?php require_once '../php/styles.php'; ?>
+  <style>
+  #index.jumbotron {
+    background: #FFF url("../img/jumbo.jpg") center center;*/
+    background-size: cover;
+    color: #4E342E;
+    text-shadow: 1px 1px 2px #FFF;
+  }
+  </style>
 </head>
 <body>
 <?php require '../php/nav.php'; ?>
@@ -13,7 +21,7 @@
     <h1>COMP344</h1>
     <br>
     <p>Role Based Access Control</p>
-    <br><br><br><br><br>
+    <br><br><br><br>
   </div>
 
   <br><br><br>
