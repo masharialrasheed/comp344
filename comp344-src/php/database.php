@@ -21,8 +21,18 @@
     $pdo = getDatabaseConnection();
     $stmt = $pdo->prepare($sql);
     $stmt->execute($params);
-    $results = $stmt->fetchAll();
-    return $results;
+	
+	$results = '';
+	
+	try {
+		$results = $stmt->fetchAll();
+	} catch (Exception $e) {
+    	// echo 'Caught exception: ',  $e->getMessage(), "\n";
+	}
+    
+    
+	
+	return $results;
   }
 
 ?>

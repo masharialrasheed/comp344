@@ -55,7 +55,8 @@
     <div class="row">
       <div class="col-sm-6 col-sm-offset-3">
         <h1>Shopper Login</h1><br><br>
-        <form method="POST" onsubmit="return validateFormOnSubmit(this)" action="LoginShopper.php">
+
+        <form method="POST" onSubmit="return validateFormOnSubmit(this)" action="LoginShopper.php">
           <div class="row form-group">
             <div class="col-xs-4">
               <label for="username">Your username:</label>
@@ -81,6 +82,25 @@
       </div>
     </div>
   </div>
+
+
+<table width="200" border="1">
+  <caption>
+    Test Users
+  </caption>
+  <tr>
+    <td>superadmin</td>
+    <td>sapassword</td>
+  </tr>
+  <tr>
+    <td>wsuser</td>
+    <td>wspassword</td>
+  </tr>
+  <tr>
+    <td>rakim</td>
+    <td>rpassword</td>
+  </tr>
+</table>
 
 <?php } ?>
 
