@@ -1,4 +1,9 @@
-<?php require_once '../php/session.php'; ?>
+<?php 
+require_once '../php/session.php'; 
+require_once '../php/rbac.php';
+
+//rbacEnforce();
+?>
 
 <html>
 <head>
@@ -12,7 +17,13 @@
 
   <?php
   	if (isset($_SESSION['username'])) {
-		echo $_SESSION['username'];
+		echo "You have logged on as " . $_SESSION['username'];
+		?>
+<br>
+  
+        <?php
+	} else {
+		echo "Please login first.";
 	}
   ?>
 

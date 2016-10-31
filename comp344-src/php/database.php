@@ -23,12 +23,12 @@
 	$sql_el = explode(" ", $sql);
     $stmt->execute($params);
 	
-	$result = '';
+	$results = '';
 	
 	try {
 		$results = $stmt->fetchAll();
 	} catch (Exception $e) {
-    	echo 'Caught exception: ',  $e->getMessage(), "\n";
+    	//echo 'Caught exception: ',  $e->getMessage(), "\n";
 	}
     
     

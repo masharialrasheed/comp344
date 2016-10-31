@@ -68,9 +68,6 @@
           ?>
           </ul>
         </li>
-        <li>
-        <a href="/customerservice">Customer Service</a>
-        </li>
 
         <?php
         if (isset($_SESSION['username'])) {

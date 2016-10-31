@@ -82,24 +82,23 @@
     </div>
   </div>
 
-
+  <div class="container content">
 <table width="200" border="1">
   <caption>
     Test Users
   </caption>
   <tr>
-    <td>superadmin</td>
-    <td>sapassword</td>
-  </tr>
-  <tr>
-    <td>wsuser</td>
-    <td>wspassword</td>
+    <td>username</td>
+    <td>password</td>
+     <td>Group</td>
   </tr>
   <tr>
     <td>rakim</td>
     <td>rpassword</td>
+    <td>Customer</td>
   </tr>
 </table>
+</div>
 
 <?php } ?>
 
