@@ -19,7 +19,7 @@
     if (!isset($_SESSION['username']) ||
         !rbacCheck($_SESSION['username'], basename($_SERVER["PHP_SELF"]))
     ) {
-	  header('Location: /public/Forbidden.php');
+      header('Location: Forbidden.php');
       exit();
     }
   }

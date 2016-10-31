@@ -55,6 +55,7 @@
     <div class="row">
       <div class="col-sm-6 col-sm-offset-3">
         <h1>Shopper Login</h1><br><br>
+
         <form method="POST" onSubmit="return validateFormOnSubmit(this)" action="LoginShopper.php">
           <div class="row form-group">
             <div class="col-xs-4">

@@ -20,7 +20,6 @@
   function query($sql, $params=[]) {
     $pdo = getDatabaseConnection();
     $stmt = $pdo->prepare($sql);
-	$sql_el = explode(" ", $sql);
     $stmt->execute($params);
 	
 	$results = '';
@@ -28,7 +27,7 @@
 	try {
 		$results = $stmt->fetchAll();
 	} catch (Exception $e) {
-    	//echo 'Caught exception: ',  $e->getMessage(), "\n";
+    	// echo 'Caught exception: ',  $e->getMessage(), "\n";
 	}
     
     
