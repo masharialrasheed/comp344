@@ -98,6 +98,11 @@
     <td>rpassword</td>
     <td>Customer</td>
   </tr>
+  <tr>
+    <td>csmuser</td>
+    <td>csmpassword</td>
+    <td>Customer Service Manager</td>
+  </tr>
 </table>
 </div>
 
