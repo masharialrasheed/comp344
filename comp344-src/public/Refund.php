@@ -30,7 +30,12 @@
 <div class="box">
 <h1>Refund</h1>
 		<div>
+        <form action="ReservePayment.php" method="post">
+        Order ID: 1
+        <br>
         
+        <input name="" type="submit">
+        </form>
         
         </div>
 </div>			
