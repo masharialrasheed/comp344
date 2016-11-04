@@ -34,7 +34,6 @@
 	}
 
 ?>
-
 <html>
 <head>
 <title>Shopper Login</title>
@@ -42,20 +41,17 @@
 </head>
 <body>
 <?php require_once '../php/nav.php'; ?>
-
 <?php if (isset($_SESSION['username'])) { ?>
-
   <div class="container content">
     <div class="alert alert-info">You're already logged in as <?php echo $_SESSION['username'] ?>!</div>
   </div>
-
-<?php } else { ?>
-
+  <?php } else { ?>
   <div class="container content">
     <div class="row">
       <div class="col-sm-6 col-sm-offset-3">
-        <h1>Shopper Login</h1><br><br>
-
+        <h1>Shopper Login</h1>
+        <br>
+        <br>
         <form method="POST" onSubmit="return validateFormOnSubmit(this)" action="LoginShopper.php">
           <div class="row form-group">
             <div class="col-xs-4">
@@ -80,33 +76,36 @@
           </div>
         </form>
       </div>
+      <div class="col-sm-6 col-sm-offset-3">
+        <table class="table table-striped table-bordered">
+          <caption>
+          Test Users
+          </caption>
+          <tr>
+            <th>Username</th>
+            <th>Password
+              </td>
+            <th>Group</th>
+          </tr>
+          <tr>
+            <td>rakim</td>
+            <td>rpassword</td>
+            <td>Customer</td>
+          </tr>
+          <tr>
+            <td>cu2</td>
+            <td>cpassword2</td>
+            <td>Customer</td>
+          </tr>
+          <tr>
+            <td>csmuser</td>
+            <td>csmpassword</td>
+            <td>Customer Service Representative</td>
+          </tr>
+        </table>
+      </div>
     </div>
   </div>
-
-  <div class="container content">
-<table width="200" border="1">
-  <caption>
-    Test Users
-  </caption>
-  <tr>
-    <td>username</td>
-    <td>password</td>
-     <td>Group</td>
-  </tr>
-  <tr>
-    <td>rakim</td>
-    <td>rpassword</td>
-    <td>Customer</td>
-  </tr>
-  <tr>
-    <td>csmuser</td>
-    <td>csmpassword</td>
-    <td>Customer Service Manager</td>
-  </tr>
-</table>
-</div>
-
-<?php } ?>
-
+  <?php } ?>
 <?php require_once '../php/footer.php'; ?>
 </html>

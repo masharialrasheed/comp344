@@ -3,24 +3,19 @@ require_once '../php/database.php';
 require_once '../php/session.php';
 require_once '../php/rbac.php';
 
-function getOrders($username) {
-	$sql = "SELECT shopper_id FROM Shopper WHERE sh_username='" . $username ."'";
-	$shopper = query($sql);
-	
-	$shopper_id = $shopper[0]['shopper_id'];
+function getAllOrders() {
 	
 	$sql = "SELECT Order_id AS id, Shopper.sh_email AS email, Order_PayDate as pay_date, Order_ShipDate AS ship_date, 
 	Order_Total as total
 	FROM Orders  
 	INNER JOIN Shopper
-	ON Orders.order_shopper = Shopper.shopper_id
-	WHERE order_shopper='" . $shopper_id . "'";
+	ON Orders.order_shopper = Shopper.shopper_id";
     $rows = query($sql);
     return $rows;
 }
 
 rbacEnforce();
-$orders = getOrders($_SESSION['username']);
+$orders = getAllOrders();
 
 ?>
 <html>
@@ -37,7 +32,7 @@ $orders = getOrders($_SESSION['username']);
 ?>
   <div>
     <div>
-      <h1>Order History</h1>
+      <h1>All Customer Orders</h1>
       <table class="table table-bordered">
         <thead>
           <tr>
@@ -51,7 +46,7 @@ $orders = getOrders($_SESSION['username']);
         <tbody>
           <?php foreach ($orders as $o) {
           echo "<tr>";
-		  echo "<td><a href=\"DisplayOrderDetails.php?order_id={$o['id']}\">{$o['id']}</a></td>";
+		  echo "<td><a href=\"ResendRefundOrder.php?order_id={$o['id']}\">{$o['id']}</a></td>";
 		  echo "<td>{$o['email']}</td>";
 		  echo "<td>{$o['pay_date']}</td>";
 		  echo "<td>{$o['ship_date']}</td>";

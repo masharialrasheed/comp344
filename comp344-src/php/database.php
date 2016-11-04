@@ -16,7 +16,6 @@
     return $connection;
   }
 
-
   function query($sql, $params=[]) {
     $pdo = getDatabaseConnection();
     $stmt = $pdo->prepare($sql);
@@ -29,9 +28,7 @@
 	} catch (Exception $e) {
     	    echo 'Caught exception: ',  $e->getMessage(), "\n";
 	}
-    
-    
-	
+ 
 	return $results;
   }
 

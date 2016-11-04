@@ -18,10 +18,7 @@
 <div class="container content">
 
   <div id="index" class="jumbotron">
-    <h1>COMP344</h1>
-    <br>
-    <p>Role Based Access Control</p>
-    <br><br><br><br>
+    <h1>e-Commerce Technology</h1>
   </div>
 
   <br><br><br>

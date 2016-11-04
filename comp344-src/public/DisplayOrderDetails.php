@@ -3,24 +3,25 @@ require_once '../php/database.php';
 require_once '../php/session.php';
 require_once '../php/rbac.php';
 
-function getOrders($username) {
+function getOrderDetail($username, $order_id) {
 	$sql = "SELECT shopper_id FROM Shopper WHERE sh_username='" . $username ."'";
 	$shopper = query($sql);
 	
 	$shopper_id = $shopper[0]['shopper_id'];
 	
-	$sql = "SELECT Order_id AS id, Shopper.sh_email AS email, Order_PayDate as pay_date, Order_ShipDate AS ship_date, 
-	Order_Total as total
-	FROM Orders  
-	INNER JOIN Shopper
-	ON Orders.order_shopper = Shopper.shopper_id
-	WHERE order_shopper='" . $shopper_id . "'";
+    $sql = "SELECT Product.prod_name AS prod_name, Product.prod_desc AS prod_desc
+	FROM Orders
+	INNER JOIN OrderProduct
+	ON Orders.order_id = OrderProduct.op_order_id
+	INNER JOIN Product
+	ON OrderProduct.op_prod_id=Product.prod_id
+	WHERE order_id='" . $order_id . "' AND order_shopper='" . $shopper_id . "'";
     $rows = query($sql);
     return $rows;
 }
 
 rbacEnforce();
-$orders = getOrders($_SESSION['username']);
+$orders = getOrderDetail($_SESSION['username'], $_GET["order_id"]);
 
 ?>
 <html>
@@ -37,25 +38,19 @@ $orders = getOrders($_SESSION['username']);
 ?>
   <div>
     <div>
-      <h1>Order History</h1>
+      <h1>Order# <?php echo $_GET["order_id"]; ?></h1>
       <table class="table table-bordered">
         <thead>
           <tr>
-            <th>Order ID</th>
-            <th>Customer Email</th>
-            <th>Pay Date</th>
-            <th>Ship Date</th>
-            <th>Total</th>
+            <td>Product Name</td>
+            <td>Product Description</td>
           </tr>
         </thead>
         <tbody>
           <?php foreach ($orders as $o) {
           echo "<tr>";
-		  echo "<td><a href=\"DisplayOrderDetails.php?order_id={$o['id']}\">{$o['id']}</a></td>";
-		  echo "<td>{$o['email']}</td>";
-		  echo "<td>{$o['pay_date']}</td>";
-		  echo "<td>{$o['ship_date']}</td>";
-		  echo "<td>{$o['total']}</td>";
+		  echo "<td>{$o['prod_name']}</td>";
+		  echo "<td>{$o['prod_desc']}</td>";
 		  echo "</tr>";
         } ?>
         </tbody>

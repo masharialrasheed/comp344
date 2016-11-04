@@ -1,17 +1,31 @@
 <?php 
-  require_once '../php/database.php';
-  require_once '../php/session.php';
-  require_once '../php/rbac.php';
-
-
-  rbacEnforce();
+require_once '../php/database.php';
+require_once '../php/session.php';
+require_once '../php/rbac.php';
   
-function getOrders() {
-    $rows = query("SELECT Order_id AS id, Order_Shopper AS shopper_id FROM Orders");
-    return $rows;
+function feedback($username) {
+	$sql = "SELECT sh_email FROM Shopper WHERE sh_username='" . $username ."'";
+	$shopper = query($sql);
+	$shopper_email = $shopper[0]['sh_email'];
+	
+	$from = $shopper_email;
+	$to = "comp344@outlook.com";
+	$subject = "Feedback";
+	$message = "Do you like the way information is presented? {$_POST['presentation']}";
+	$headers = "From: " . $from;
+
+	mail($to, $subject, $message, $headers);
+	echo "<p>The email has been sent to</p>";
+	echo "<p>$to</p>";
 }
 
-$orders = getOrders();
+
+rbacEnforce();
+
+if (isset($_POST['feedback'])) {
+	feedback($_SESSION['username']);
+}
+
 
 ?>
 
@@ -36,34 +50,34 @@ $orders = getOrders();
 <h1>Send Feedback</h1>
 		<div>
         <form action="" method="post">
-        
+        <input name="feedback" type="hidden" value="sent">
 			<p>
-        <input type="radio" name="radio" id="radio" value="radio">
-        <label for="radio">Do you like the way information is presented.</label> 
-         <input name="Yes" type="button" id="Yes" title="Yes" value="Yes">
-         / 
-         <input name="No" type="button" id="No" title="No" value="No">
+			 Do you like the way information is presented?
+			   <label for="presentation">Yes
+			   <input name="presentation" type="radio" value="yes"></label>
+             <label for="presentation">No
+               <input name="presentation" type="radio" value="no"></label>
+			</p>
+      <p>
+        Did any problems occur in shipping in the product? 
+          <label for="shipping_problem">Yes<input name="shipping_problem" type="radio" value="yes"></label>
+             <label for="shipping_problem">No
+               <input name="shipping_problem" type="radio" value="no"></label>
+       </p>
+      <p>
+        Was the behaviour between employee and customer was reasonable? 
+          <label for="behaviour">Yes<input name="behaviour" type="radio" value="yes"></label>
+             <label for="behaviour">No
+               <input name="behaviour" type="radio" value="no"></label>
+       </p>
+      <p>
+        Did product deliver on time?
+        <label for="delivery">Yes<input name="delivery" type="radio" value="yes"></label>
+             <label for="delivery">No
+               <input name="delivery" type="radio" value="no"></label>
       </p>
       <p>
-        <input type="radio" name="radio2" id="radio2" value="radio2">
-        Did any problems occur in shipping in the product. 
-        <input name="Yes" type="button" id="Yes" title="Yes" value="Yes">
-      / 
-      <input name="No" type="button" id="No" title="No" value="No">
-      </p>
-      <p>
-        <input type="radio" name="radio3" id="radio3" value="radio3">
-        Behaviur between employee and customer was reasonable. 
-        <input name="Yes" type="button" id="Yes" title="Yes" value="Yes">
-      / 
-      <input name="No" type="button" id="No" title="No" value="No">
-      </p>
-      <p>
-        <input type="radio" name="radio4" id="radio4" value="radio4">
-        Did product deliver on time. 
-        <input name="Yes" type="button" id="Yes" title="Yes" value="Yes">
-      /
-      <input name="No" type="button" id="No" title="No" value="No">
+      <input name="" type="submit">
       </p>
         </form>
         
